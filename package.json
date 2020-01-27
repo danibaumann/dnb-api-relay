@@ -1,0 +1,36 @@
+{
+  "name": "dnb-api",
+  "version": "0.0.1",
+  "description": "A simple api proxy to resolve the cors errors for website integrations",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "NODE_ENV=development nodemon --exec babel-node src",
+    "start": "npm run build && NODE_ENV=production node dist/index.js",
+    "--prestart": "npm run -s build",
+    "build": "rm -Rf dist && mkdir -p dist && babel ./src --out-dir dist"
+  },
+  "keywords": [
+    "dnb"
+  ],
+  "author": "Dani Baumann",
+  "license": "ISC",
+  "dependencies": {
+    "axios": "^0.19.2",
+    "cors": "^2.8.5",
+    "dotenv": "^8.2.0",
+    "express": "^4.17.1",
+    "express-rate-limit": "^5.0.0",
+    "helmet": "^3.21.2",
+    "hpp": "^0.2.3",
+    "morgan": "^1.9.1",
+    "xss-clean": "^0.1.1"
+  },
+  "devDependencies": {
+    "@babel/cli": "^7.8.3",
+    "@babel/core": "^7.8.3",
+    "@babel/node": "^7.8.3",
+    "@babel/preset-env": "^7.8.3",
+    "nodemon": "^1.19.4"
+  }
+}
