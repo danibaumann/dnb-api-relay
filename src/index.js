@@ -106,6 +106,53 @@ app.get('/v1/search/typeahead', async (req, res, next) => {
   }
 });
 
+app.get('/v1/match/cleanseMatch', async (req, res, next) => {
+  let duns;
+  try {
+    // get search string from query params
+    duns = req.query.duns;
+    if (duns === '') {
+      throw new Error('Please provide a search term');
+    }
+
+    try {
+      // request company data
+      const response = await axios.get(
+        `${dnbapi}/v1/match/cleanseMatch?duns=${duns}`,
+        {
+          headers: {
+            'Authorization': `Bearer ${token}`
+          }
+        }
+      );
+      // TODO convert dnb company model
+      // basic check
+      const comp = response.data.matchCandidates[0].organization;
+      if (response.data.matchCandidates.length === 1 && comp != 'undefined') {
+        // console.log(comp);
+        return res.status(200).json({
+          success: true,
+          data: comp
+        })
+      };
+    } catch (err) {
+      if (err.response.status === 404) {
+        return res.status(200).json({
+          success: false,
+          message: err.response.data.error.errorMessage
+        });
+      }
+      return res.status(500).json(err.message);
+    }
+
+  } catch (err) {
+    console.error(err.message);
+    return res.status(500).json(err.message);
+  }
+});
+
+
+
 app.get('*', (req, res, next) => {
   res.status(404).send('404 Page not found');
 });
