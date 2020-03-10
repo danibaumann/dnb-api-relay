@@ -73,6 +73,7 @@ app.get('/v1/search/typeahead', async (req, res, next) => {
 
     try {
       // request company data
+      // TODO set default search country
       const response = await axios.get(
         `${dnbapi}/v1/search/typeahead?searchTerm=${searchTerm}`,
         {
