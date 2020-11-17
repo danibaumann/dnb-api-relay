@@ -1,6 +1,6 @@
 # Simple API Proxy for D&B Direct+ Typeahead
 
-This is just a simple API-Proxy for D&B Direct+ Typeahead to hide relay your clients request to the D&B API.
+This is a simple API-Proxy for D&B Direct+ Typeahead API to relay your clients request to the D&B API.
 If you need full instructions, please scroll to the "Getting Started" section.
 
 ## Quick Start (TL;TR)
@@ -67,7 +67,8 @@ You should now get a console log with the information on which Port the server i
 
 ### Frontend code sample
 
-To get a quick code example on how to integrade the typeahead functionallity on your website, please refer to the following Repo.
+To get a quick code example on how to integrade the typeahead functionallity on your website, please refer to the following Repo:
+https://github.com/danibaumann/dnb-typeahead
 
 
 ### Scripts available
@@ -88,11 +89,11 @@ If you decide to use this repo in your production environment, please concider u
 * [HPP](https://www.npmjs.com/package/hpp)
 
 ### Dockerize the API
-To run the API inside a docker container, you firt need to create an image. Run the following command from the working directory.
+To run the API inside a docker container, you first need to create an image. Run the following command from the working directory.
 ```
 docker build -t dnb-api:latest .
 ```
-When the command completed successfully, you can check the new image 'dnb-api' with this docker command.
+After you created the image successfully, you can check the new image 'dnb-api' with this docker command.
 ```
 docker images
 ```
@@ -124,7 +125,7 @@ kill 7556
 
 ## Authors
 
-* Daniel Baumann - *Product Manager at Bisnode D&B Schweiz AG*
+* Daniel Baumann - https://github.com/danibaumann
 
 ## License
 
