@@ -1,0 +1,14 @@
+node_modules
+npm-debug.log
+Dockerfile
+.dockerignore
+.gitignore
+.editorconfig
+.prettierrc
+.env
+.env.sample
+.babelrc
+#src/
+dist/
+docker-compose.yml
+.git

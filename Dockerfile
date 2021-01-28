@@ -1,21 +1,27 @@
-FROM node:10-alpine
+FROM node:14-alpine
 
 LABEL maintainer="Daniel Baumann <daniel.baumann@bisnode.com>"
 
-## Create working dirs
-RUN mkdir -p /home/node/app/node_modules && \
-  chown -R node:node /home/node/app
+EXPOSE 3000
 
-WORKDIR /home/node/app
+ARG NODE_ENV=development
 
-COPY package*.json ./
+ENV NODE_ENV=${NODE_ENV}
+
+RUN mkdir /app && \
+  chown -R node:node /app
+
+WORKDIR /app
 
 USER node
 
-RUN npm install
+COPY --chown=node:node package*.json ./
+
+RUN npm install && npm cache clean --force && npm audit fix
 
 COPY --chown=node:node . .
 
-EXPOSE 3000
+# HEALTHCHECK --interval=10s --timeout=10s --start-period=10s --retries=2 \  
+#   CMD node ./healthcheck.js
 
-CMD [ "npm", "start" ]
+CMD [ "node", "src" ]
